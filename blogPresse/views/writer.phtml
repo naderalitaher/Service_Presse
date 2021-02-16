@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Blog : Articles rédigés par <?= htmlspecialchars($writer['username']) ?></title>
+	</head>
+	<body>
+		<?php require '../views/navigation.phtml' ?>
+		<h1>Articles rédigés par <?= htmlspecialchars($writer['username']) ?></h1>
+		<?php foreach($posts as $post): ?>
+			<a href="../controller/post.php?id=<?= intval($post['id']) ?>">
+				<h3><?= htmlspecialchars($post['title']) ?></h3>
+			</a>
+			<?php if(!is_null($post['imageFileName'])): ?>
+				<img src="../uploads/<?= htmlspecialchars($post['imageFileName']) ?>" alt="<?= htmlspecialchars($post['title']) ?>">
+			<?php endif; ?>
+			<p>Rédigé par <a href=""><?= htmlspecialchars($post['writerUsername']) ?></a>, le <?= $post['publicationDate'] ?></p>
+		<?php endforeach; ?>
+	</body>
+</html>

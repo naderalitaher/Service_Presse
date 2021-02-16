@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+		<title>Blog : Tableau de bord</title>
+	</head>
+	<body>
+		<?php require '../views/navigation.phtml' ?>
+		<div class="container-fluid">
+		<h1>Tableau de bord</h1>
+		<?php if(count($posts) > 0): ?>
+
+
+			<table>
+				<caption>Articles</caption>
+				<thead>
+					<tr>
+						<th>Titre</th>
+						<th>Date de publication</th>
+						<th colspan="2">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach($posts as $post): ?>
+						<tr>
+							<td><?= htmlspecialchars($post['title']) ?></td>
+							<td><?= $post['publicationDate'] ?></td>
+							<td>
+								<a href="../controller/edit-post.php?id=<?= intval($post['id']) ?>" class="btn btn-primary">Modifier</a>
+							</td>
+							</br>
+							<td>
+								<a href="../controller/delete-post.php?id=<?= intval($post['id']) ?>" class="btn btn-danger">Supprimer</a>
+							</td>
+							
+						</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		
+		
+		<?php endif; ?>
+		<a href="../controller/write-post.php" class="btn btn-success">Rédiger un article</a>
+	
+
+</br></br></br>
+
+		<?php if(count($content) > 0): ?>
+		
+			<table>
+			</br></br>	</br></br>
+				<caption>Commentaires</caption>
+				<thead>
+					<tr>
+						<th>Titre</th>
+						<th>Date de publication</th>
+						<th colspan="2">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach($comments as $comment): ?>
+						<tr>
+							<td><?= htmlspecialchars($comment['title']) ?></td>
+							<td><?= $comment['publicationDate'] ?></td>
+							<td>
+								<a href="../controller/<?= intval($post['id']) ?>" class="btn btn-primary"> Valider </a>
+							</td>
+							<td>
+								<a href="../controller/<?= intval($post['id']) ?>" class="btn btn-danger"> Supprimer </a>
+							</td>
+						</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		<?php endif; ?>
+		</div>
+	</body>
+</html>
