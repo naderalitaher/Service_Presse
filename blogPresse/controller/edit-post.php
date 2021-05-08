@@ -45,7 +45,24 @@
 			}
 		}
 
-		//	Connexion à la base de données
+		
+		
+	
+		modifierArticle($_POST['title'],$_POST['content'], $imageFileName, $_SESSION['userId'], $_POST['id']);
+
+		//	Redirection vers le tableau de bord
+		header('Location: ../controller/dashboard.php');
+		exit;
+	}
+
+	//	Inclusion du HTML
+	require '../views/edit-post.phtml';
+
+
+
+
+
+	//	Connexion à la base de données
 		// $dbh = new PDO
 		// (
 		// 	'mysql:host=localhost;dbname=Blog2;port=3308;charset=utf8',
@@ -81,17 +98,5 @@
 		// }
 		// $sth->bindValue(':writerId', $_SESSION['userId'], PDO::PARAM_INT);
 		// $sth->execute();
-
-		
-	
-		modifierArticle($_POST['title'],$_POST['content'], $imageFileName, $_SESSION['userId'], $_POST['id']);
-
-		//	Redirection vers le tableau de bord
-		header('Location: ../controller/dashboard.php');
-		exit;
-	}
-
-	//	Inclusion du HTML
-	require '../views/edit-post.phtml';
 
 	?>

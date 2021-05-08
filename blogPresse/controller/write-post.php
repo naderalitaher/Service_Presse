@@ -7,6 +7,22 @@
 	session_start();
 
 
+	$msg = '';
+if (isset($_POST['upload'])) {
+    $image = $_FILES['image']['name'];
+    $image_path = 'img/'. $image;
+
+	if ($req) {
+        //utiliser la fonction
+        move_uploaded_file($_FILES['image']['tmp_name'], $image_path);
+        $msg = 'l"image a été chargée avec succés!';
+    } else {
+        $msg = 'Echec du chargement de l"image!';
+    }
+}
+
+
+
 	//	Si l'utilisateur n'est pas identifié
 	if(!array_key_exists('userId', $_SESSION))
 	{
@@ -32,7 +48,8 @@
 						
 						require '../models/posts.models.php';
 
-						AjouPosts($_POST['title'],$_POST['content'], $imageFileName,  $_SESSION['userId']);
+						AjouPosts($_POST['title'],$_POST['content'], $imageFileName,  $_SESSION['userId'], $_POST['position']);
+
 					}
 					else
 					{

@@ -1,18 +1,31 @@
 <!DOCTYPE html>
 <html lang="fr">
-	<head>
-		<meta charset="utf-8">
-		<title>Blog : Rédaction d'un article</title>
-	</head>
-	<body>
-		<?php require '../views/navigation.phtml' ?>
-		<h1>Rédaction d'un article</h1>
-		<form action="../controller/write-post.php" method="post" enctype="multipart/form-data">
-			<input type="text" name="title" placeholder="Titre" required>
-			<textarea name="content" placeholder="Contenu" required></textarea>
-			<input type="hidden" name="MAX_FILE_SIZE" value="3000000">
-			<input type="file" name="image" accept="image/png, image/jpeg">
-			<button type="submit">Publier</button>
-		</form>
-	</body>
+
+<head>
+	<meta charset="utf-8">
+	<title>Service Presse Présidence</title>
+</head>
+
+<body>
+	<?php require '../views/navigation.phtml' ?>
+	<h1>Publication d'un communiqué</h1>
+	<form action="../controller/write-post.php" method="post" enctype="multipart/form-data">
+		<input type="text" name="title" placeholder="Titre" required>
+		<textarea name="content" placeholder="Contenu" required></textarea>
+	
+		<input type="hidden" name="MAX_FILE_SIZE" value="3000000">
+		<input type="file" name="image" accept="image/png, image/jpeg">
+
+		<select name= "position" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+			<!-- mettre un name -->
+			<option selected>Selectionner l'emplacement de l'article</option>
+			<option value="postGauche">à Gauche</option>
+			<option value="postCentre">au Centre</option>
+			<option value="postDroite">à Droite</option>
+		</select>
+
+		<button type="submit">Publier</button>
+	</form>
+</body>
+
 </html>

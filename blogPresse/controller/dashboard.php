@@ -12,7 +12,22 @@
 	}
 
 require '../models/posts.models.php';
-	$posts = getAllPostswithWriters();
+	// $posts = getAllPostswithWriters();
+	$postsGauche = RecuperationArticleGauche();
+    $postsCentre = RecuperationArticleCentre();
+    $postsDroite = RecuperationArticleDroite();
+
+	// $post = modifierArticle($title, $content, $imageFileName, $userId, $id);
+
+	// $url = RecuperationImageCarrousel($path);
+
+	$urlInsertion = InsertionImageCarrousel($_FILES['image']['tmp_name']);
+
+
+	// $postsPopulaire = RecuperationArticlePopulaire();
+	// $postsPopulaire = RecuperationArticlePopulaire();
+	// $postsPopulaire = RecuperationArticlePopulaire();
+	// $postsPopulaire = RecuperationArticlePopulaire();
 
 	//	Inclusion du HTML
 	require '../views/dashboard.phtml';

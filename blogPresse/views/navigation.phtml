@@ -4,29 +4,27 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="../css/header.css">
-	<link
+	<link rel="stylesheet" href="../css/index.css">
+	<!-- <link
       rel="stylesheet" media="only screen and (max-width:500px)"
       href="../css/header.mobile.css">
 	<link
       href="https://fonts.googleapis.com/css?family=Long+Cang|Montserrat:300,400,700&display=swap"
       rel="stylesheet"
-    />
+    /> -->
 	<title>Document</title>
 </head>
 
 <body>
-	<div class="vp-container">
-		<header>
-			<h2 class="vp-logo">
-				<img src="../img/logo.jpg" alt="" title="logo" style="height:65px">
-				<a href="#">Service de presse</a>
-				</h2>
-				
-				<?php if (!array_key_exists('userId', $_SESSION)) : ?>
+
+<header>
+      <img src="../img/logo_Service_Presse_Noir.jpg" alt="" title="logo" style="height:130px">
+    
+
+	  <?php if (!array_key_exists('userId', $_SESSION)) : ?>
 					<ul>
-					<li><a href="./">Accueil</a></li>
-				    <!-- <li><a href="../controller/sign-up.php">Inscription</a></li> -->
+					
+					<!-- <li><a class="text-primary" href="#">Contact</a></li> -->
 					<li><a href="../controller/sign-in.php" button class="btn btn-light">Connexion</button></a></li>
 					
 					</ul>
@@ -36,9 +34,21 @@
 					<li><a href="../controller/sign-out.php">Déconnexion</a></li>
 					</ul>
 					<?php endif; ?>
+
+    </header>
+
+<!-- 
+	<div class="vp-container">
+		<header>
+			<h2 class="vp-logo">
+				<img src="../img/logo_Service_Presse_Noir.jpg" alt="" title="logo" style="height:165px">
+				<a href="#"></a>
+				</h2>
+				
+				
 		
 		</header>
-	</div>
+	</div> -->
 
 </body>
 

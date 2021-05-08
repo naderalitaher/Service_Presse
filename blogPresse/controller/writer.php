@@ -10,5 +10,7 @@
 	require '../models/posts.models.php';
 	$posts = getPostsBywritersId($_GET['id']);
 
+	
+
 	//	Inclusion du HTML
 	require '../views/writer.phtml';

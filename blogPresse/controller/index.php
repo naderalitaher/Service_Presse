@@ -1,9 +1,21 @@
 <?php
-	//
-	session_start();
+//
+session_start();
 
-	require '../models/posts.models.php';
-	$posts = getAllPostswithWriters();
+require '../models/posts.models.php';
+$postsGauche = RecuperationArticleGauche();
+$postsCentre = RecuperationArticleCentre();
+$postsDroite = RecuperationArticleDroite();
 
-	//	Inclusion du HTML
-	require '../views/index.phtml';
+
+// $req = InsertionImageCarrousel($image_path);
+
+// $url = RecuperationImageCarrousel($path);
+
+// $postsPopulaire = RecuperationArticlePopulaire();
+// $postsPopulaire = RecuperationArticlePopulaire();
+// $postsPopulaire = RecuperationArticlePopulaire();
+// $postsPopulaire = RecuperationArticlePopulaire();
+
+//	Inclusion du HTML
+require '../views/index.phtml';

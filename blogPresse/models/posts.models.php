@@ -1,35 +1,90 @@
 <?php
 
+function RecuperationImageCarrousel($path)
+{
 
-// function bddCo()
-// {
-// 	$bdd = new PDO(
-// 			'mysql:host=localhost;dbname=Blog2;port=3308;charset=utf8',
-// 			'root',
-// 			'',
-// 			[
-// 				PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-// 				PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-// 			]
-// 		);
+	$bdd = new PDO(
+		'mysql:host=localhost;dbname=Blog2;port=3308;charset=utf8',
+		'root',
+		'',
+		[
+			PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+			PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+		]
+	);
 
-// 	return $bdd; $bdd = bddCo();
-// }
+	$req =
+		" 
+	      SELECT 
+		  *
+	     FROM 
+		      carrousel
+		      (image_path)
+		 WHERE
+		   id = :id
+
+";
+	//On prepare la requete 
+	$req = $bdd->prepare($req);
+	$req->bindValue(":image_path", $path, PDO::PARAM_STR);
+	//On exécute la requete
+	$req->execute();
+	$url = $req->fetch();
+
+	return $url;
+}
+
+function InsertionImageCarrousel($path)
+{
+
+
+	$bdd = new PDO(
+		'mysql:host=localhost;dbname=Blog2;port=3308;charset=utf8',
+		'root',
+		'',
+		[
+			PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+			PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+		]
+	);
+
+
+	$req =
+		"
+		  INSERT INTO 
+	        carrousel 
+	         (image_path) 
+	       VALUES 
+	         (:img)";
+
+	//On prepare la requete 
+	$query = $bdd->prepare($req);
+	$query->bindValue(":img", $path);
+	//On exécute la requete
+	$req = $query->execute();
+	
+
+
+
+}
+
+
+
 
 function getAllPosts()
 {
 
 	$bdd = new PDO(
-					'mysql:host=localhost;dbname=Blog2;port=3308;charset=utf8',
-					'root',
-					'',
-					[
-						PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-						PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-					]
-				);
+		'mysql:host=localhost;dbname=Blog2;port=3308;charset=utf8',
+		'root',
+		'',
+		[
+			PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+			PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+		]
+	);
 
-	
+
 
 	//requete SELECT * FROM `comments` 
 
@@ -38,7 +93,7 @@ function getAllPosts()
        SELECT
            *
        FROM
-           Posts
+           posts
      
    ';
 	$sth = $bdd->query($query);
@@ -51,50 +106,153 @@ function getAllPosts()
 	return $res;
 }
 
-function getAllPostswithWriters()
+function RecuperationArticleGauche()
 {
 
 
 
 	$bdd = new PDO(
-					'mysql:host=localhost;dbname=Blog2;port=3308;charset=utf8',
-					'root',
-					'',
-					[
-						PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-						PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-					]
-				);
+		'mysql:host=localhost;dbname=Blog2;port=3308;charset=utf8',
+		'root',
+		'',
+		[
+			PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+			PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+		]
+	);
 
 	$query =
 		'
 		SELECT
-			Posts.id,
-			Posts.title,
-			Posts.imageFileName,
-			DATE_FORMAT(Posts.publicationDate, \'%d/%m/%Y à %H:%i:%s\') AS publicationDate,
-			Posts.writerId,
-			Writers.username AS writerUsername
+			posts.id,
+			posts.title,
+			posts.imageFileName,
+			DATE_FORMAT(posts.publicationDate, \'%d/%m/%Y à %H:%i:%s\') AS publicationDate,
+			posts.writerId,
+			posts.position,
+			writers.username AS writerUsername
 		FROM
-			Posts
+			posts
 		INNER JOIN
-			Writers
+			writers
 		ON
-			Posts.writerId = Writers.id
-		ORDER BY
-			Posts.publicationDate DESC
+			posts.writerId = writers.id
+
+		WHERE
+		    position = \'postGauche\'
+		
+		LIMIT 1 	
+
     ';
 	$sth = $bdd->query($query);
 
-	$res = $sth->fetchAll();
+	$postsGauche = $sth->fetchAll();
 
 
 	//return fetchAll
 
-	return $res;
-
-
+	return $postsGauche;
 }
+
+function RecuperationArticleDroite()
+{
+
+
+
+	$bdd = new PDO(
+		'mysql:host=localhost;dbname=Blog2;port=3308;charset=utf8',
+		'root',
+		'',
+		[
+			PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+			PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+		]
+	);
+
+	$query =
+		'
+		SELECT
+			posts.id,
+			posts.title,
+			posts.imageFileName,
+			DATE_FORMAT(posts.publicationDate, \'%d/%m/%Y à %H:%i:%s\') AS publicationDate,
+			posts.writerId,
+			posts.position,
+			writers.username AS writerUsername
+		FROM
+			posts
+		INNER JOIN
+			writers
+		ON
+			posts.writerId = writers.id
+		WHERE
+		    position = \'postDroite\' 
+		
+		LIMIT 1 
+	
+			
+    ';
+	$sth = $bdd->query($query);
+
+	$postDroite = $sth->fetchAll();
+
+
+	//return fetchAll
+
+	return $postDroite;
+}
+
+
+function RecuperationArticleCentre()
+{
+
+
+
+	$bdd = new PDO(
+		'mysql:host=localhost;dbname=Blog2;port=3308;charset=utf8',
+		'root',
+		'',
+		[
+			PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+			PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+		]
+	);
+
+	$query =
+		'
+		SELECT
+			posts.id,
+			posts.title,
+			posts.imageFileName,
+			DATE_FORMAT(posts.publicationDate, \'%d/%m/%Y à %H:%i:%s\') AS publicationDate,
+			posts.writerId,
+			posts.position,
+			writers.username AS writerUsername
+		FROM
+			posts
+		INNER JOIN
+			writers
+		ON
+			posts.writerId = writers.id
+		WHERE
+		    position = \'postCentre\' 
+		
+		LIMIT 3 
+	
+	
+		
+    ';
+	$sth = $bdd->query($query);
+
+	$postsCentre = $sth->fetchAll();
+
+
+	//return fetchAll
+
+	return $postsCentre;
+}
+
+
 
 function getPostsBywritersId($id)
 {
@@ -114,22 +272,22 @@ function getPostsBywritersId($id)
 	$query =
 		'
 		SELECT
-			Posts.id,
-			Posts.title,
-			Posts.content,
-			Posts.imageFileName,
+			posts.id,
+			posts.title,
+			posts.content,
+			posts.imageFileName,
 			DATE_FORMAT(Posts.publicationDate, \'%d/%m/%Y à %H:%i:%s\') AS publicationDate,
-			Writers.username AS writerUsername
+			writers.username AS writerUsername
 		FROM
-			Posts
+			posts
 		INNER JOIN
-			Writers
+			writers
 		ON
-			Posts.writerId = Writers.id
+			posts.writerId = writers.id
 		WHERE
-			Posts.writerId = :id
+			posts.writerId = :id
 		ORDER BY
-            Posts.publicationDate DESC';
+            posts.publicationDate DESC';
 	$sth = $bdd->prepare($query);
 	$sth->bindValue(':id', $id, PDO::PARAM_INT);
 	$sth->execute();
@@ -138,7 +296,7 @@ function getPostsBywritersId($id)
 	return $posts;
 }
 
-function AjouPosts($title, $content, $imageFileName, $userId)
+function AjouPosts($title, $content, $imageFileName, $userId, $position)
 {
 
 	$bdd = new PDO(
@@ -156,20 +314,21 @@ function AjouPosts($title, $content, $imageFileName, $userId)
 	$query =
 		'
         INSERT INTO
-            Posts
-            (title, content, imageFileName, writerId)
+            posts
+            (title, content, imageFileName, writerId, position)
         VALUES
-            (:title, :content, :imageFileName, :writerId)
+            (:title, :content, :imageFileName, :writerId, :position)
     ';
 	$sth = $bdd->prepare($query);
-	$sth->bindValue(':title', trim($title), PDO::PARAM_STR);
-	$sth->bindValue(':content', trim($content), PDO::PARAM_STR);
+	$sth->bindValue(':title', ($title), PDO::PARAM_STR);
+	$sth->bindValue(':content', ($content), PDO::PARAM_STR);
 	if (isset($imageFileName)) {
 		$sth->bindValue(':imageFileName', $imageFileName, PDO::PARAM_STR);
 	} else {
 		$sth->bindValue(':imageFileName', null, PDO::PARAM_NULL);
 	}
 	$sth->bindValue(':writerId', $userId, PDO::PARAM_INT);
+	$sth->bindValue(':position', $position, PDO::PARAM_STR);
 	$sth->execute();
 }
 
@@ -191,20 +350,25 @@ function RecuperationArticle($id)
 	$query =
 		'
 		SELECT
-			Posts.id,
-			Posts.title,
-			Posts.content,
-			Posts.imageFileName,
-			DATE_FORMAT(Posts.publicationDate, \'%d/%m/%Y à %H:%i:%s\') AS publicationDate,
-			Writers.username AS writerUsername
+			posts.id,
+			posts.title,
+			posts.content,
+			posts.position,
+			posts.imageFileName,
+			DATE_FORMAT(posts.publicationDate, \'%d/%m/%Y à %H:%i:%s\') AS publicationDate,
+			writers.username AS writerUsername
 		FROM
-			Posts
+			posts
 		INNER JOIN
-			Writers
+			writers
 		ON
-			Posts.writerId = Writers.id
+			posts.writerId = Writers.id
 		WHERE
-			Posts.id = :id
+			posts.id = :id
+			&&
+			posts.position = \'gauche\'
+
+			LIMIT 1
 	';
 	$sth = $bdd->prepare($query);
 	$sth->bindValue(':id', $id, PDO::PARAM_INT);
@@ -232,7 +396,7 @@ function modifierArticle($title, $content, $imageFileName, $userId, $id)
 	$query =
 		'
 		  UPDATE
-				Posts
+				posts
 			SET
 				title = :title, content= :content, imageFileName = :imageFileName, writerId =:writerId
 			
@@ -251,3 +415,56 @@ function modifierArticle($title, $content, $imageFileName, $userId, $id)
 	$sth->bindValue(':writerId', $userId, PDO::PARAM_INT);
 	$sth->execute();
 }
+
+
+
+
+
+/*function RecuperationArticlePopulaire()
+{
+
+	$bdd = new PDO(
+		'mysql:host=localhost;dbname=Blog2;port=3308;charset=utf8',
+		'root',
+		'',
+		[
+			PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+			PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+		]
+	);
+
+	// $bdd = bddCo();
+
+	$query =
+		'
+	SELECT
+		posts.id,
+		posts.title,
+		posts.imageFileName,
+		DATE_FORMAT(Posts.publicationDate, \'%d/%m/%Y à %H:%i:%s\') AS publicationDate,
+		posts.writerId,
+		posts.position,
+		writers.username AS writerUsername
+	FROM
+		posts
+	INNER JOIN
+		writers
+	ON
+		posts.writerId = writers.id
+	WHERE
+		populaire = 1
+	
+	LIMIT 3 
+
+
+	
+';
+	$sth = $bdd->query($query);
+
+	$res = $sth->fetchAll();
+
+
+	//return fetchAll
+
+	return $res;*/
+

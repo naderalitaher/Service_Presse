@@ -44,8 +44,7 @@ if (!empty($_POST)) {
 	}
 }
 
-// $post = getAllComm();
-// $postId = getComments($id);
+$content = getComments($_GET['id']);
 
 
 require '../views/post.phtml';

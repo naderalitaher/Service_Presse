@@ -5,9 +5,12 @@
 		<title>Blog : Articles rédigés par <?= htmlspecialchars($writer['username']) ?></title>
 	</head>
 	<body>
+		<h1>Hello </h1>
 		<?php require '../views/navigation.phtml' ?>
 		<h1>Articles rédigés par <?= htmlspecialchars($writer['username']) ?></h1>
-		<?php foreach($posts as $post): ?>
+		<?php foreach($posts as $post):	?>
+
+		
 			<a href="../controller/post.php?id=<?= intval($post['id']) ?>">
 				<h3><?= htmlspecialchars($post['title']) ?></h3>
 			</a>
@@ -17,4 +20,5 @@
 			<p>Rédigé par <a href=""><?= htmlspecialchars($post['writerUsername']) ?></a>, le <?= $post['publicationDate'] ?></p>
 		<?php endforeach; ?>
 	</body>
+
 </html>
