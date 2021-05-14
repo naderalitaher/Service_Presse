@@ -21,9 +21,42 @@ require '../models/posts.models.php';
 
 	// $url = RecuperationImageCarrousel($path);
 
-	$urlInsertion = InsertionImageCarrousel($_FILES['image']['tmp_name']);
+	// $urlInsertion = InsertionImageCarrousel($path);
 
+ $msg = '';
+	if (isset($_POST['upload'])) {
+		$image = 'img/logo_Service_Presse/'.uniqid().'.'.pathinfo($_FILES['image']['name'],PATHINFO_EXTENSION);
+		$path = 'img/' . $image;
 
+var_dump($_POST, $_FILES);
+require '../models/posts.models.php';
+		if ($req) {
+			//utiliser la fonction
+			move_uploaded_file($_FILES['image']['tmp_name'], $path);
+			$msg = 'l"image a été chargée avec succés!';
+		} else {
+			$msg = 'Echec du chargement de l"image!';
+		}
+	}
+	
+	// <br><br><br><br>
+
+	/*<?php  $msg = '';
+	if (isset($_POST['upload'])) {
+		$image = $_FILES['image']['name'];
+		$path = 'img/' . $image;
+
+		var_dump($_POST, $_FILES);
+
+		if ($req) {
+			//utiliser la fonction
+			move_uploaded_file($_FILES['image']['tmp_name'], $path);
+			$msg = 'l"image a été chargée avec succés!';
+		} else {
+			$msg = 'Echec du chargement de l"image!';
+		}
+	}
+	?>*/
 	// $postsPopulaire = RecuperationArticlePopulaire();
 	// $postsPopulaire = RecuperationArticlePopulaire();
 	// $postsPopulaire = RecuperationArticlePopulaire();

@@ -16,12 +16,11 @@ function RecuperationImageCarrousel($path)
 	$req =
 		" 
 	      SELECT 
-		  *
-	     FROM 
+		     image_Path
+	      FROM 
 		      carrousel
-		      (image_path)
-		 WHERE
-		   id = :id
+		      
+		 
 
 ";
 	//On prepare la requete 
@@ -54,7 +53,7 @@ function InsertionImageCarrousel($path)
 		  INSERT INTO 
 	        carrousel 
 	         (image_path) 
-	       VALUES 
+	      VALUES 
 	         (:img)";
 
 	//On prepare la requete 
@@ -62,10 +61,6 @@ function InsertionImageCarrousel($path)
 	$query->bindValue(":img", $path);
 	//On exécute la requete
 	$req = $query->execute();
-	
-
-
-
 }
 
 
@@ -140,6 +135,8 @@ function RecuperationArticleGauche()
 
 		WHERE
 		    position = \'postGauche\'
+		ORDER BY
+            posts.publicationDate DESC	
 		
 		LIMIT 1 	
 
@@ -187,7 +184,8 @@ function RecuperationArticleDroite()
 			posts.writerId = writers.id
 		WHERE
 		    position = \'postDroite\' 
-		
+		ORDER BY 
+		    publicationDate DESC
 		LIMIT 1 
 	
 			
@@ -236,7 +234,8 @@ function RecuperationArticleCentre()
 			posts.writerId = writers.id
 		WHERE
 		    position = \'postCentre\' 
-		
+		ORDER BY 
+		    publicationDate DESC
 		LIMIT 3 
 	
 	
@@ -288,6 +287,7 @@ function getPostsBywritersId($id)
 			posts.writerId = :id
 		ORDER BY
             posts.publicationDate DESC';
+
 	$sth = $bdd->prepare($query);
 	$sth->bindValue(':id', $id, PDO::PARAM_INT);
 	$sth->execute();
@@ -322,6 +322,7 @@ function AjouPosts($title, $content, $imageFileName, $userId, $position)
 	$sth = $bdd->prepare($query);
 	$sth->bindValue(':title', ($title), PDO::PARAM_STR);
 	$sth->bindValue(':content', ($content), PDO::PARAM_STR);
+
 	if (isset($imageFileName)) {
 		$sth->bindValue(':imageFileName', $imageFileName, PDO::PARAM_STR);
 	} else {
@@ -373,9 +374,9 @@ function RecuperationArticle($id)
 	$sth = $bdd->prepare($query);
 	$sth->bindValue(':id', $id, PDO::PARAM_INT);
 	$sth->execute();
-	$post = $sth->fetch();
+	$posts = $sth->fetch();
 
-	return $post;
+	return $posts;
 }
 
 function modifierArticle($title, $content, $imageFileName, $userId, $id)
@@ -467,4 +468,3 @@ function modifierArticle($title, $content, $imageFileName, $userId, $id)
 	//return fetchAll
 
 	return $res;*/
-

@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="../css/index.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
 	<link rel="stylesheet" media="only screen and (max-width:700px)" href="../css/index.mobile.css">
 	<link href="https://fonts.googleapis.com/css?family=Long+Cang|Montserrat:300,400,700&display=swap" rel="stylesheet" />
 	<script src="https://kit.fontawesome.com/83f4286022.js" crossorigin="anonymous"></script>
@@ -15,7 +15,7 @@
 
 <body>
 
-	<div class="container">
+	<div class="container1">
 
 		<?php require '../views/navigation.phtml' ?>
 
@@ -32,13 +32,15 @@
 			<?php foreach ($postsGauche as $post) : ?>
 				<article>
 					<a href="../controller/post.php?id=<?= intval($post['id']) ?>">
+					
 						<?php if (!is_null($post['imageFileName'])) : ?>
-							<img src="../uploads/<?= htmlspecialchars($post['imageFileName']) ?>" alt="<?= htmlspecialchars($post['title']) ?>">
+							<img src="../uploads/<?= htmlspecialchars($post['imageFileName']) ?>" 
+							alt="<?= htmlspecialchars($post['title']) ?>">
 						<?php endif; ?>
 						<h3><?= htmlspecialchars($post['title']) ?></h3>
 
 						<p>Rédigé par <a href="../controller/writer.php?id=<?= intval($post['writerId']) ?>">
-								<?= htmlspecialchars($post['writerUsername']) ?></a></br>Lire la suite</p>
+								<?= htmlspecialchars($post['writerUsername']) ?></a></p>
 						<p class="text-hint">le <?= $post['publicationDate'] ?>
 
 							<i class="fas fa-star mx-1"></i>
@@ -60,9 +62,11 @@
 						<h3><?= htmlspecialchars($post['title']) ?></h3>
 
 						<p>Rédigé par <a href="../controller/writer.php?id=<?= intval($post['writerId']) ?>">
-								<?= htmlspecialchars($post['writerUsername']) ?></a></br>Lire la suite</p>
+								<?= htmlspecialchars($post['writerUsername']) ?></a></p>
+								<br>
 						<p class="text-hint">le <?= $post['publicationDate'] ?>
 							<i class="fas fa-star mx-1"></i>
+							
 						</p>
 				</article>
 			<?php endforeach ?>
@@ -78,7 +82,7 @@
 						<h3><?= htmlspecialchars($post['title']) ?></h3>
 
 						<p>Rédigé par <a href="../controller/writer.php?id=<?= intval($post['writerId']) ?>">
-								<?= htmlspecialchars($post['writerUsername']) ?></a></br>Lire la suite</p>
+								<?= htmlspecialchars($post['writerUsername']) ?></a></p>
 						<p class="text-hint">le <?= $post['publicationDate'] ?>
 
 							<i class="fas fa-star mx-1"></i>
@@ -202,7 +206,7 @@
 	</div>
 
 	<footer>
-		<a href="#">
+		<a href="https://twitter.com/IsmailOguelleh">
 			<i class="fab fa-twitter"></i>
 			<span class="not-important">Twitter</span>
 		</a>
@@ -214,16 +218,16 @@
 			<i class="fab fa-linkedin"></i>
 			<span class="not-important">linkedin</span>
 		</a>
-		<a href="#">
+		<a href="https://www.facebook.com/PAGEOFFICIELLEIOG">
 			<i class="fab fa-facebook"></i>
 			<span class="not-important">Facebook</span>
 		</a>
 
-		<a href="#">
+		<a href="https://www.youtube.com/watch?v=74lB0-APavs&ab_channel=FRANCE24">
 			<i class="fab fa-youtube"></i>
 			<span class="not-important">YouTube</span>
 		</a>
-		<span>© Copyright 2021 Service Presse Présidence </span>
+		<span>2021 Service Presse Présidence © Tous droits réservés</span>
 	</footer>
 </body>
 

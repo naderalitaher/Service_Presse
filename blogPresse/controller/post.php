@@ -8,17 +8,18 @@ session_start();
 require '../models/posts.models.php';
 
 
-$post = RecuperationArticle($_GET['id']);
+$posts = RecuperationArticle($id);
 
-// $post = RecuperationArticle($_SESSION['userId']=$post['id'];
+// $article = RecuperationArticle($_SESSION['userId']= $article['id']);
 
 
-// $_SESSION['userId']=$post['id']
+// $_SESSION['userId']= $article['id'];
 
 //	Inclusion du HTML
 
 
 require '../models/comments.models.php';
+
 
 if (!empty($_POST)) {
 

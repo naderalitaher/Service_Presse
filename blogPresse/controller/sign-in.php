@@ -4,14 +4,6 @@ session_start();
     //    Inclusion du HTML
 
    
-    //
-
-    // $options = [
-    //     'cost' => 12,
-    // ];
-    // echo password_hash("Nebraska", PASSWORD_BCRYPT, $options);
-   
-    //    Traitement du formulaire d'identification s'il a été soumis
 
     if(!empty($_POST))
     {
@@ -31,10 +23,7 @@ session_start();
             }
  else
         {
-            //    Redirection vers la page d'identification
-           echo 'Mauvais mot de passe </br>'; 
-        //    var_dump($writer);
-        //    echo password_hash('Nebraska', PASSWORD_DEFAULT);
+            header('Location: ../controller/sign-in.php');
 
             exit;
         }

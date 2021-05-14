@@ -10,7 +10,7 @@ $postsDroite = RecuperationArticleDroite();
 
 // $req = InsertionImageCarrousel($image_path);
 
-// $url = RecuperationImageCarrousel($path);
+// $url = RecuperationImageCarrousel();
 
 // $postsPopulaire = RecuperationArticlePopulaire();
 // $postsPopulaire = RecuperationArticlePopulaire();

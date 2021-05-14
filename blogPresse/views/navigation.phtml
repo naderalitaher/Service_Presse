@@ -17,27 +17,31 @@
 
 <body>
 
-<header>
-      <img src="../img/logo_Service_Presse_Noir.jpg" alt="" title="logo" style="height:130px">
-    
+	<header>
 
-	  <?php if (!array_key_exists('userId', $_SESSION)) : ?>
-					<ul>
-					
-					<!-- <li><a class="text-primary" href="#">Contact</a></li> -->
-					<li><a href="../controller/sign-in.php" button class="btn btn-light">Connexion</button></a></li>
-					
-					</ul>
-				<?php else : ?>
-					<ul>
-					<li><a href="../controller/dashboard.php">Tableau de bord</a></li>
-					<li><a href="../controller/sign-out.php">Déconnexion</a></li>
-					</ul>
-					<?php endif; ?>
+		<a href="/">
 
-    </header>
+			<img src="../img/logo_Service_Presse_Noir.jpg" alt="" title="logo" style="height:130px">
 
-<!-- 
+		</a>
+
+		<?php if (!array_key_exists('userId', $_SESSION)) : ?>
+			<ul>
+
+				<!-- <li><a class="text-primary" href="#">Contact</a></li> -->
+				<li><a href="../controller/sign-in.php" button class="btn btn-light">Connexion</button></a></li>
+
+			</ul>
+		<?php else : ?>
+			<ul>
+				<li><a href="../controller/dashboard.php">Tableau de bord</a></li>
+				<li><a href="../controller/sign-out.php">Déconnexion</a></li>
+			</ul>
+		<?php endif; ?>
+
+	</header>
+
+	<!-- 
 	<div class="vp-container">
 		<header>
 			<h2 class="vp-logo">

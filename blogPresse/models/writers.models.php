@@ -3,14 +3,14 @@
 function bddCo()
 {
     $bdd = new PDO(
-            'mysql:host=localhost;dbname=Blog2;port=3308;charset=utf8',
-            'root',
-            '',
-            [
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-            ]
-        );
+        'mysql:host=localhost;dbname=Blog2;port=3308;charset=utf8',
+        'root',
+        '',
+        [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+        ]
+    );
     return $bdd;
 }
 
