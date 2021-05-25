@@ -46,12 +46,12 @@ ul {
 /* container */
 
 .container {
-  width: 100%;
+  width: 70%;
   min-height: 100vh;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-around;
   color: var(--text-color);
 
 }

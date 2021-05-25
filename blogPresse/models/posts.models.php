@@ -48,7 +48,7 @@ function InsertionImageCarrousel($path)
 	);
 
 
-	$req =
+	$url =
 		"
 		  INSERT INTO 
 	        carrousel 
@@ -57,10 +57,10 @@ function InsertionImageCarrousel($path)
 	         (:img)";
 
 	//On prepare la requete 
-	$query = $bdd->prepare($req);
+	$query = $bdd->prepare($url);
 	$query->bindValue(":img", $path);
 	//On exécute la requete
-	$req = $query->execute();
+	$url = $query->execute();
 }
 
 

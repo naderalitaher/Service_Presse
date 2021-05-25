@@ -8,9 +8,7 @@ $postsCentre = RecuperationArticleCentre();
 $postsDroite = RecuperationArticleDroite();
 
 
-// $req = InsertionImageCarrousel($image_path);
-
-// $url = RecuperationImageCarrousel();
+var_dump($path);
 
 // $postsPopulaire = RecuperationArticlePopulaire();
 // $postsPopulaire = RecuperationArticlePopulaire();

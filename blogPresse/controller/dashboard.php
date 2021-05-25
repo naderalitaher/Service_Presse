@@ -23,13 +23,16 @@ require '../models/posts.models.php';
 
 	// $urlInsertion = InsertionImageCarrousel($path);
 
+
+ var_dump($path); 
+ 
  $msg = '';
 	if (isset($_POST['upload'])) {
 		$image = 'img/logo_Service_Presse/'.uniqid().'.'.pathinfo($_FILES['image']['name'],PATHINFO_EXTENSION);
 		$path = 'img/' . $image;
 
-var_dump($_POST, $_FILES);
-require '../models/posts.models.php';
+    var_dump($_POST, $_FILES);
+    require '../models/posts.models.php';
 		if ($req) {
 			//utiliser la fonction
 			move_uploaded_file($_FILES['image']['tmp_name'], $path);
